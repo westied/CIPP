@@ -6,7 +6,7 @@ import { CippOffCanvas } from "./CippOffCanvas";
 import { ApiPostCall, ApiGetCallWithPagination } from "../../api/ApiCall";
 import CippFormComponent from "./CippFormComponent";
 import { CippApiResults } from "./CippApiResults";
-import { useSettings } from "/src/hooks/use-settings";
+import { useSettings } from "../../hooks/use-settings";
 
 export const CippAuditLogSearchDrawer = ({
   buttonText = "New Search",
@@ -94,13 +94,6 @@ export const CippAuditLogSearchDrawer = ({
     // Extract values from RecordTypeFilters array
     if (Array.isArray(formattedData.RecordTypeFilters)) {
       formattedData.RecordTypeFilters = formattedData.RecordTypeFilters.map((item) =>
-        typeof item === "object" ? item.value : item
-      );
-    }
-
-    // Extract values from ServiceFilters array
-    if (Array.isArray(formattedData.ServiceFilters)) {
-      formattedData.ServiceFilters = formattedData.ServiceFilters.map((item) =>
         typeof item === "object" ? item.value : item
       );
     }
@@ -205,28 +198,6 @@ export const CippAuditLogSearchDrawer = ({
       dateTimeType: "datetime-local",
       validators: { required: "End time is required" },
       required: true,
-    },
-    {
-      type: "autoComplete",
-      name: "ServiceFilters",
-      label: "Services",
-      multiple: true,
-      creatable: false,
-      options: [
-        { label: "Azure Active Directory", value: "AzureActiveDirectory" },
-        { label: "Dynamics 365", value: "CRM" },
-        { label: "Exchange Online", value: "Exchange" },
-        { label: "Microsoft Flow", value: "MicrosoftFlow" },
-        { label: "Microsoft Teams", value: "MicrosoftTeams" },
-        { label: "OneDrive for Business", value: "OneDrive" },
-        { label: "Power BI", value: "PowerBI" },
-        { label: "Security & Compliance", value: "ThreatIntelligence" },
-        { label: "SharePoint Online", value: "SharePoint" },
-        { label: "Yammer", value: "Yammer" },
-      ],
-      validators: {
-        validate: (values) => values?.length > 0 || "Please select at least one service",
-      },
     },
     {
       type: "autoComplete",

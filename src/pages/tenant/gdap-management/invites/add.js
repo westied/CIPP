@@ -1,4 +1,4 @@
-import { Layout as DashboardLayout } from "/src/layouts/index.js";
+import { Layout as DashboardLayout } from "../../../../layouts/index.js";
 import { useForm, useWatch } from "react-hook-form";
 import CippFormComponent from "../../../../components/CippComponents/CippFormComponent";
 import { Grid } from "@mui/system";
@@ -81,8 +81,8 @@ const Page = () => {
     if (addInvites?.data?.length > 0) {
       setInviteData((prevData) => {
         const newData = addInvites.data.map((invite) => ({
-          ...invite.data.Invite,
-          Message: invite.data.Message,
+          ...invite.Invite,
+          Message: invite.Message,
         }));
         const mergedData = [...prevData, ...newData];
         const deduplicatedData = mergedData.filter(
@@ -118,7 +118,7 @@ const Page = () => {
                   The onboarding process will also run on a nightly schedule. For automated
                   onboardings, please check out{" "}
                   <Link component={NextLink} href="/cipp/settings/partner-webhooks">
-                    Partner Webhooks
+                    Automated Onboarding
                   </Link>{" "}
                   in Application Settings.
                 </Typography>
